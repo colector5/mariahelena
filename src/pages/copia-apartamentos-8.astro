@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Social from '../components/Social.astro';
+
+const fotos = Array.from({ length: 12 }, (_, i) => `foto-${i + 1}`);
+---
+
+<Layout title="Apartamento Vila Mariana | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="" />
+
+    <div class="gallery-header">
+      <p class="intro">Clique na fotografia para vê-la ampliada</p>
+      <h1 class="gallery-title">APARTAMENTO VILA MARIANA - CUBATÃO</h1>
+    </div>
+
+    <section class="gallery-grid">
+      {fotos.map((foto) => (
+        <a href={`/images/vila-mariana/${foto}.jpg`} target="_blank" class="gallery-item">
+          <div class="foto-wrapper">
+            <img 
+              src={`/images/vila-mariana/${foto}.jpg`} 
+              alt="APARTAMENTO EM VILA MARIANA" 
+              loading="lazy" 
+            />
+          </div>
+        </a>
+      ))}
+    </section>
+
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  .gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 20px 0 24px;
+  }
+
+  .intro {
+    font-size: 14px;
+    color: #6f6a64;
+    margin: 0;
+  }
+
+  .gallery-title {
+    font-size: 14px;
+    font-weight: 300;
+    color: #6f6a64;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 22px;
+    margin-bottom: 50px;
+  }
+
+  .gallery-item {
+    display: block;
+  }
+
+  .foto-wrapper {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #c8c8c8;
+  }
+
+  .foto-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover .foto-wrapper img {
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+    
+    .gallery-header {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 12px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import Social from '../components/Social.astro';
+
+// Imagens geradas por IA ou obtidas de fontes de domínio público (Unsplash, licença livre).
+const projetos = [
+  { titulo: 'CERVA E CIA', descricao: 'Projeto de bar e cervejaria artesanal', foto: 'cerva-e-cia' },
+  { titulo: 'CADEIRA BANDEIRINHA', descricao: 'Design de cadeira em compensado curvado', foto: 'cadeira-bandeirinha' },
+  { titulo: 'ACESSO VERDE-TE', descricao: 'Entrada com jardim vertical sustentável', foto: 'acesso-verde-te' },
+  { titulo: 'ÁRVORE DE NATAL RIO PLAZA', descricao: 'Decoração natalina em shopping center', foto: 'arvore-natal-rio-plaza' },
+  { titulo: 'VARANDA GOURMET RIO PLAZA', descricao: 'Terraço gourmet com área de lazer', foto: 'varanda-gourmet-rio-plaza' },
+  { titulo: 'ABRASCA RJ', descricao: 'Sala de reuniões corporativa', foto: 'abrasca-rj' },
+  { titulo: "DELL'ANNO ZONA SUL - 2009", descricao: 'Showroom de cozinhas planejadas', foto: 'dellano-zona-sul' },
+  { titulo: 'ESCOLA NÓS DA DANÇA', descricao: 'Estúdio de dança com piso de madeira', foto: 'escola-nos-da-danca' },
+  { titulo: 'IMOBILIÁRIA WS - 2008', descricao: 'Recepção e escritório imobiliário', foto: 'imobiliaria-ws' },
+  { titulo: 'ÓTICA TE VOIR - 2007', descricao: 'Loja de óculos com design contemporâneo', foto: 'otica-te-voir' },
+  { titulo: 'MOSTRA RIO + DESIGN 2009', descricao: 'Exposição de design e mobiliário', foto: 'mostra-rio-design' },
+  { titulo: 'CONJUNTO PANDEIRO - 2008', descricao: 'Conjunto de banquetas e mesas em madeira', foto: 'conjunto-pandeiro' },
+  { titulo: 'MOSTRA MORAR + POR MENOS 2011', descricao: 'Ambiente de sala de estar compacta', foto: 'morar-menos-2011a' },
+  { titulo: 'MOSTRA MORAR + POR MENOS 2011', descricao: 'Cozinha e jantar integrados', foto: 'morar-menos-2011b' },
+  { titulo: 'MOSTRA MORAR + POR MENOS 2006', descricao: 'Quarto decorado para mostra de interiores', foto: 'morar-menos-2006' },
+];
+---
+
+<Layout title="Mostras e Concursos | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/mostras-e-concursos" />
+    <ProjectGrid pasta="mostras" projetos={projetos} />
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+  }
+</style>

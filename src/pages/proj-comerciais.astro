@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import Social from '../components/Social.astro';
+
+// Fotos CC0 (domínio público) via rawpixel, em public/images/comerciais/.
+const projetos = [
+  { titulo: 'CLÍNICA DE PSICOLOGIA', descricao: 'Recepção e sala de espera', foto: 'clinica-psicologia' },
+  { titulo: 'CERVEJARIA CERVA E CIA', descricao: 'Bar e balcão de atendimento', foto: 'cerva-e-cia-1' },
+  { titulo: 'CERVEJARIA CERVA E CIA', descricao: 'Detalhe das chopeiras', foto: 'cerva-e-cia-2' },
+  { titulo: 'CENTRO DE ARTES NÓS DA DANÇA - 2019', descricao: 'Sala de dança com piso de madeira e espelhos', foto: 'nos-da-danca-2019' },
+  { titulo: 'CENTRO DE ARTES NÓS DA DANÇA - 2007', descricao: 'Estúdio de ballet', foto: 'nos-da-danca-2007' },
+  { titulo: 'CONSULTÓRIO ENDOCRINOLOGIA', descricao: 'Sala de atendimento', foto: 'consultorio-endocrinologia' },
+  { titulo: 'IMOBILIÁRIA W5', descricao: 'Sala da diretoria', foto: 'imobiliaria-w5' },
+  { titulo: 'ÓTICA TE VOIR', descricao: 'Expositor de armações', foto: 'otica-te-voir' },
+  { titulo: 'DELLANO ZONA SUL', descricao: 'Showroom de móveis planejados', foto: 'dellano-zona-sul' },
+  { titulo: 'ABRASCA-RJ', descricao: 'Sala de reuniões', foto: 'abrasca-rj' },
+  { titulo: 'ABRASCA-SP', descricao: 'Escritório e área de convivência', foto: 'abrasca-sp' },
+];
+---
+
+<Layout title="Projetos Comerciais | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/proj-comerciais" />
+    <ProjectGrid pasta="comerciais" projetos={projetos} />
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+  }
+</style>

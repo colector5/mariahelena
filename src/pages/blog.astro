@@ -1,0 +1,359 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Social from '../components/Social.astro';
+
+// Cards de artigos do blog — placeholder para artigos futuros.
+const posts = [
+  {
+    titulo: 'Como Planejar a Reforma do Seu Apartamento',
+    resumo: 'Dicas essenciais para organizar cada etapa da reforma, desde o planejamento até a entrega final, sem dor de cabeça.',
+    categoria: 'Dicas',
+    data: '10 Mai 2026',
+    url: '/blog/como-planejar-a-reforma-do-seu-apartamento',
+    imagem: '/images/blog/reforma_planejamento_1790631120207.jpg'
+  },
+  {
+    titulo: 'Tendências de Interiores para 2026',
+    resumo: 'Cores, materiais e estilos que estão em alta neste ano. Descubra como aplicar no seu espaço.',
+    categoria: 'Tendências',
+    data: '25 Mai 2026',
+    url: '/blog/tendencias-de-interiores',
+    imagem: '/images/blog/tendencias_cores_1790694254299.jpg'
+  },
+  {
+    titulo: 'A Importância da Iluminação no Design de Interiores',
+    resumo: 'Como a luz natural e artificial transformam ambientes e influenciam o bem-estar dos moradores.',
+    categoria: 'Design',
+    data: '10 Jun 2026',
+    url: '/blog/importancia-da-iluminacao-no-design-de-interiores',
+    imagem: '/images/blog/iluminacao_camadas_1790699386656.jpg'
+  },
+  {
+    titulo: 'Cozinhas Integradas: Prós e Contras',
+    resumo: 'Entenda as vantagens e desvantagens de integrar a cozinha à sala de estar e como fazer isso com elegância.',
+    categoria: 'Projetos',
+    data: '25 Jun 2026',
+    url: '/blog/cozinhas-integradas-pros-e-contras',
+    imagem: '/images/blog/cozinha_integrada_ampla_1790700489479.jpg'
+  },
+  {
+    titulo: 'Sustentabilidade na Arquitetura Residencial',
+    resumo: 'Materiais ecológicos, eficiência energética e jardins verticais para uma casa mais verde.',
+    categoria: 'Sustentabilidade',
+    data: '10 Jul 2026',
+    url: '/blog/sustentabilidade-na-arquitetura-residencial',
+    imagem: '/images/blog/sustentabilidade_fachada_1790701120558.jpg'
+  },
+  {
+    titulo: 'Pequenos Espaços, Grandes Ideias',
+    resumo: 'Soluções criativas de marcenaria e layout para apartamentos compactos no Rio de Janeiro.',
+    categoria: 'Dicas',
+    data: '25 Jul 2026',
+    url: '/blog/pequenos-espacos-grandes-ideias',
+    imagem: '/images/blog/apartment_interior_1_1790628979911.jpg'
+  },
+  {
+    titulo: 'Como Escolher a Paleta de Cores Ideal para Cada Ambiente',
+    resumo: 'Aprenda a combinar cores com a função de cada cômodo e crie uma casa harmoniosa e com personalidade.',
+    categoria: 'Dicas',
+    data: '10 Ago 2026',
+    url: '/blog/como-escolher-a-paleta-de-cores',
+    imagem: '/images/blog/paleta_cores_neutras_1790713319841.jpg'
+  },
+  {
+    titulo: 'Feng Shui na Decoração: Como Equilibrar Energia e Estética',
+    resumo: 'Princípios simples do Feng Shui para deixar os ambientes mais leves, organizados e acolhedores.',
+    categoria: 'Design',
+    data: '20 Ago 2026',
+    url: '/blog/feng-shui-na-decoracao',
+    imagem: '/images/blog/feng_shui_sala_1790714344417.jpg'
+  },
+  {
+    titulo: 'Home Office em Casa: Como Planejar um Espaço Produtivo',
+    resumo: 'Ergonomia, iluminação e organização para criar um cantinho de trabalho confortável em qualquer metragem.',
+    categoria: 'Projetos',
+    data: '01 Set 2026',
+    url: '/blog/home-office-em-casa',
+    imagem: '/images/blog/home_office_decor_1790715306706.jpg'
+  },
+  {
+    titulo: 'Biofilia: Como Trazer a Natureza para Dentro de Casa',
+    resumo: 'Plantas, materiais naturais e luz solar para criar ambientes que aliviam o estresse e melhoram o bem-estar.',
+    categoria: 'Tendências',
+    data: '05 Set 2026',
+    url: '/blog/biofilia-como-trazer-a-natureza',
+    imagem: '/images/blog/biofilia_sala_1790716561272.jpg'
+  },
+  {
+    titulo: 'Marcenaria Sob Medida ou Móveis Prontos? Saiba Qual Escolher',
+    resumo: 'Compare custo, prazo, personalização e durabilidade para decidir o que faz mais sentido no seu projeto.',
+    categoria: 'Dicas',
+    data: '12 Set 2026',
+    url: '/blog/marcenaria-sob-medida-ou-moveis-prontos',
+    imagem: '/images/blog/cozinha_integrada_ampla_1790700489479.jpg'
+  },
+  {
+    titulo: 'Como Projetar uma Suíte Master Aconchegante e Funcional',
+    resumo: 'Closet, banheiro e quarto integrados: ideias de layout, iluminação e materiais para um refúgio completo.',
+    categoria: 'Projetos',
+    data: '18 Set 2026',
+    url: '/blog/como-projetar-uma-suite-master',
+    imagem: '/images/blog/feng_shui_quarto_1790714360379.jpg'
+  },
+  {
+    titulo: 'Texturas e Materiais: Como Criar Profundidade nos Ambientes',
+    resumo: 'Madeira, linho, pedra e metal: aprenda a misturar texturas para deixar a decoração mais rica e sofisticada.',
+    categoria: 'Design',
+    data: '22 Set 2026',
+    url: '/blog/texturas-e-materiais',
+    imagem: '/images/blog/tendencias_materiais_1790694301050.jpg'
+  },
+  {
+    titulo: 'Iluminação Eficiente: Como Reduzir o Consumo de Energia sem Perder o Estilo',
+    resumo: 'LED, sensores e aproveitamento da luz natural para uma casa mais econômica e bonita.',
+    categoria: 'Sustentabilidade',
+    data: '28 Set 2026',
+    url: '/blog/iluminacao-eficiente-consumo-de-energia',
+    imagem: '/images/blog/tendencias_iluminacao_1790694483211.jpg'
+  },
+  {
+    titulo: 'Quanto Custa Reformar um Apartamento? Guia de Valores e Planejamento',
+    resumo: 'Entenda os fatores que influenciam o preço da obra e como montar um orçamento realista.',
+    categoria: 'Dicas',
+    data: '29 Set 2026',
+    url: '/blog/quanto-custa-reformar-um-apartamento',
+    imagem: '/images/blog/reforma_obra_1790631154231.jpg'
+  },
+  {
+    titulo: 'Varandas Gourmet: Ideias para Transformar Sua Área Externa',
+    resumo: 'Churrasqueira, bancadas e mobiliário adequado para criar um espaço de convivência para o dia a dia.',
+    categoria: 'Projetos',
+    data: '29 Set 2026',
+    url: '/blog/varandas-gourmet-ideias-para-transformar',
+    imagem: '/images/blog/biofilia_sala_1790716561272.jpg'
+  },
+  {
+    titulo: 'Estilo Japandi: A Mistura Perfeita entre Minimalismo Japonês e Conforto Escandinavo',
+    resumo: 'Entenda os princípios desse estilo e como aplicá-lo com simplicidade, madeira clara e tons neutros.',
+    categoria: 'Tendências',
+    data: '29 Set 2026',
+    url: '/blog/estilo-japandi-minimalismo-conforto',
+    imagem: '/images/blog/paleta_cores_neutras_1790713319841.jpg'
+  },
+  {
+    titulo: 'Como Montar uma Galeria de Quadros que Valoriza Sua Parede',
+    resumo: 'Composição, molduras, alturas e dicas práticas para criar uma parede de arte com identidade.',
+    categoria: 'Design',
+    data: '30 Set 2026',
+    url: '/blog/como-montar-uma-galeria-de-quadros',
+    imagem: '/images/blog/apartment_interior_4_1790629024613.jpg'
+  },
+  {
+    titulo: 'Quartos Infantis: Como Planejar um Ambiente que Cresce com a Criança',
+    resumo: 'Segurança, versatilidade e criatividade para projetar um quarto que acompanha cada fase.',
+    categoria: 'Projetos',
+    data: '30 Set 2026',
+    url: '/blog/quartos-infantis-ambiente-que-cresce',
+    imagem: '/images/blog/quarto_infantil_versatil_1790761210813.jpg'
+  },
+  {
+    titulo: 'Reforma Sustentável: Como Reduzir Desperdício e Impacto Ambiental',
+    resumo: 'Reaproveitamento de materiais, descarte correto de entulho e escolhas conscientes para uma obra mais verde.',
+    categoria: 'Sustentabilidade',
+    data: '30 Set 2026',
+    url: '/blog/reforma-sustentavel-reduzir-desperdicio',
+    imagem: '/images/blog/reforma_sustentavel_capa_1790769481169.jpg'
+  },
+  {
+    titulo: 'Organização e Decoração: Erros que Deixam a Casa Bagunçada',
+    resumo: 'Descubra os hábitos e escolhas que atrapalham a organização e como corrigi-los de forma simples.',
+    categoria: 'Dicas',
+    data: '30 Set 2026',
+    url: '/blog/organizacao-e-decoracao-erros',
+    imagem: '/images/blog/organizacao_decoracao_capa_1790771787875.jpg'
+  },
+  {
+    titulo: 'Montagem de Móveis: Ferramentas que Ajudam a Deixar a Casa Mais Prática',
+    resumo: 'Da parafusadeira à fita métrica, conheça as ferramentas que facilitam a montagem de móveis e os pequenos ajustes do dia a dia.',
+    categoria: 'Dicas',
+    data: '30 Set 2026',
+    url: '/blog/montagem-de-moveis-ferramentas',
+    imagem: '/images/blog/montagem_ferramentas_capa.jpg'
+  }
+];
+---
+
+<Layout title="Blog | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/blog" />
+
+    <section class="blog-header">
+      <h1>Blog</h1>
+      <p class="subtitle">Artigos sobre arquitetura, design de interiores e tendências</p>
+    </section>
+
+    <section class="posts-grid">
+      {posts.map((post) => (
+        <a href={post.url} class="card">
+          <div class="card-img">
+            {post.imagem ? (
+              <img src={post.imagem} alt={post.titulo} />
+            ) : (
+              <div class="placeholder-img">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="m21 15-5-5L5 21" />
+                </svg>
+              </div>
+            )}
+          </div>
+          <div class="card-body">
+            <span class="categoria">{post.categoria}</span>
+            <h2>{post.titulo}</h2>
+            <p class="resumo">{post.resumo}</p>
+            <span class="data">{post.data}</span>
+          </div>
+        </a>
+      ))}
+    </section>
+
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  .blog-header {
+    margin: 24px 0 32px;
+  }
+
+  .blog-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    color: #4f4a45;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    margin: 6px 0 0;
+    font-size: 15px;
+    color: #8a847d;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 50px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e8e4de;
+    transition: box-shadow 0.3s, transform 0.3s;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .card-img {
+    aspect-ratio: 16 / 9;
+    background: #f3f0eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .card:hover .card-img img {
+    transform: scale(1.04);
+  }
+
+  .placeholder-img {
+    width: 48px;
+    height: 48px;
+    color: #c5bfb7;
+  }
+
+  .placeholder-img svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-body {
+    padding: 20px 22px 24px;
+  }
+
+  .categoria {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #9a8f82;
+    background: #f3f0eb;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+
+  .card h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #4f4a45;
+    line-height: 1.35;
+  }
+
+  .card:hover h2 {
+    color: #9a8f82;
+  }
+
+  .resumo {
+    margin: 0 0 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #7a756f;
+  }
+
+  .data {
+    font-size: 12px;
+    color: #b0a99f;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

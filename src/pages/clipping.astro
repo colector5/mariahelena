@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Social from '../components/Social.astro';
+import { sites, revistas, arquivo } from '../data/clipping.mjs';
+
+const secoes = [
+  { titulo: 'PUBLICAÇÕES EM SITES', tipo: 'site', itens: sites, colunas: 6 },
+  { titulo: 'PUBLICAÇÕES EM REVISTAS E JORNAIS', tipo: 'revista', itens: revistas, colunas: 4 },
+];
+---
+
+<Layout title="Clipping | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/clipping" />
+
+    {secoes.map((s) => (
+      <section class="secao">
+        <div class="topo">
+          <p class="intro">Clique na fotografia para vê-la ampliada</p>
+          <h2 class="secao-titulo">{s.titulo}</h2>
+        </div>
+        <div class:list={['grid', s.tipo]} style={`--colunas: ${s.colunas}`}>
+          {s.itens.map((titulo, i) => (
+            <a href={arquivo(s.tipo, i)} class="item" data-legenda={titulo}>
+              <div class="foto">
+                <img src={arquivo(s.tipo, i)} alt={titulo} loading="lazy" />
+              </div>
+              <span class="legenda">{titulo}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <Social />
+  </div>
+
+  <dialog class="ampliada">
+    <button class="fechar" aria-label="Fechar">×</button>
+    <img alt="" />
+    <p></p>
+  </dialog>
+</Layout>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('dialog.ampliada')!;
+  const img = dialog.querySelector('img')!;
+  const legenda = dialog.querySelector('p')!;
+
+  document.querySelectorAll<HTMLAnchorElement>('.grid .item').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      img.src = a.href;
+      img.alt = a.dataset.legenda ?? '';
+      legenda.textContent = a.dataset.legenda ?? '';
+      dialog.showModal();
+    });
+  });
+
+  // Fecha ao clicar no botão ou fora da imagem.
+  dialog.addEventListener('click', (e) => {
+    if (e.target !== img) dialog.close();
+  });
+</script>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  .secao {
+    margin-bottom: 50px;
+  }
+
+  .topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 20px 0 16px;
+  }
+
+  .intro {
+    margin: 0;
+    font-size: 14px;
+    color: #6f6a64;
+  }
+
+  .secao-titulo {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: #8a847d;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--colunas), 1fr);
+    gap: 26px 16px;
+  }
+
+  .item {
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .foto {
+    overflow: hidden;
+    background: #c8c8c8;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+
+  .site .foto {
+    aspect-ratio: 4 / 3;
+  }
+
+  .revista .foto {
+    aspect-ratio: 3 / 4;
+  }
+
+  .foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .item:hover .foto img {
+    transform: scale(1.04);
+  }
+
+  .legenda {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #4f4a45;
+  }
+
+  .item:hover .legenda {
+    color: #9a8f82;
+  }
+
+  .ampliada {
+    max-width: 92vw;
+    max-height: 92vh;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .ampliada::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .ampliada img {
+    display: block;
+    max-width: 92vw;
+    max-height: 84vh;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .ampliada p {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .fechar {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    border: none;
+    background: none;
+    font-size: 36px;
+    line-height: 1;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+
+    .topo {
+      flex-direction: column-reverse;
+      gap: 4px;
+    }
+
+    .site {
+      --colunas: 3 !important;
+    }
+
+    .revista {
+      --colunas: 2 !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .site {
+      --colunas: 2 !important;
+    }
+  }
+</style>

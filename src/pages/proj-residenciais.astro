@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import Social from '../components/Social.astro';
+
+// Fotos CC0 (domínio público) via rawpixel, em public/images/residenciais/.
+const projetos = [
+  { titulo: 'APARTAMENTO GÁVEA', descricao: 'Quarto de casal com closet', foto: 'gavea' },
+  { titulo: 'APARTAMENTO TIJUCA', descricao: 'Cozinha com ilha central', foto: 'tijuca' },
+  { titulo: 'APARTAMENTO URCA', descricao: 'Sala de estar com lareira', foto: 'urca' },
+  { titulo: 'APARTAMENTO BOTAFOGO', descricao: 'Suíte master', foto: 'botafogo' },
+  { titulo: 'APARTAMENTO IPANEMA 3', descricao: 'Sala de estar', foto: 'ipanema-3' },
+  { titulo: 'APARTAMENTO LAGOA', descricao: 'Banheiro com banheira', foto: 'lagoa' },
+  { titulo: 'APARTAMENTO ALTO LEBLON', descricao: 'Sala de estar e jantar integradas', foto: 'alto-leblon' },
+  { titulo: 'APARTAMENTO LARANJEIRAS 2', descricao: 'Cozinha gourmet', foto: 'laranjeiras-2' },
+  { titulo: 'APARTAMENTO ICARAÍ', descricao: 'Quarto de casal', foto: 'icarai' },
+  { titulo: 'APARTAMENTO COPACABANA 1', descricao: 'Sala de TV', foto: 'copacabana-1' },
+  { titulo: 'APARTAMENTO LEME', descricao: 'Sala de jantar', foto: 'leme' },
+  { titulo: 'APARTAMENTO BARRA DA TIJUCA', descricao: 'Cozinha integrada', foto: 'barra-da-tijuca' },
+  { titulo: 'APARTAMENTO COPACABANA 2', descricao: 'Quarto', foto: 'copacabana-2' },
+  { titulo: 'APARTAMENTO VILA MARIANA', descricao: 'Cozinha e jantar em estilo industrial', foto: 'vila-mariana' },
+  { titulo: 'APARTAMENTO LARANJEIRAS 1', descricao: 'Cozinha planejada', foto: 'laranjeiras-1' },
+  { titulo: 'APARTAMENTO COPACABANA 4', descricao: 'Sala de estar e jantar', foto: 'copacabana-4' },
+  { titulo: 'COBERTURA BOTAFOGO', descricao: 'Living integrado', foto: 'cobertura-botafogo' },
+  { titulo: 'APARTAMENTO IPANEMA 2', descricao: 'Suíte com banheiro', foto: 'ipanema-2' },
+  { titulo: 'CASA', descricao: 'Cozinha clássica com ilha', foto: 'casa' },
+  { titulo: 'APARTAMENTO COPACABANA 3', descricao: 'Quarto de hóspedes', foto: 'copacabana-3' },
+  { titulo: 'APARTAMENTO HUMAITÁ', descricao: 'Sala de jantar', foto: 'humaita' },
+  { titulo: 'LOFT FLAMENGO', descricao: 'Living com tijolo aparente', foto: 'loft-flamengo' },
+  { titulo: 'APARTAMENTO IPANEMA 1', descricao: 'Cozinha branca', foto: 'ipanema-1' },
+  { titulo: 'APARTAMENTO JARDIM BOTÂNICO', descricao: 'Sala de jantar', foto: 'jardim-botanico' },
+];
+---
+
+<Layout title="Projetos Residenciais | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/proj-residenciais" />
+    <ProjectGrid pasta="residenciais" projetos={projetos} />
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+  }
+</style>

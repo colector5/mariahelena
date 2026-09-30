@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import Social from '../components/Social.astro';
+
+// Fotos CC0 (domínio público) via rawpixel, em public/images/design/.
+const projetos = [
+  { titulo: 'CADEIRA BANDEIRINHA', descricao: 'Cadeira em compensado de madeira curvado', foto: 'cadeira-bandeirinha' },
+  { titulo: 'MESA MULTBRAS', descricao: 'Mesa de jantar com tampo laqueado branco', foto: 'mesa-multbras' },
+  { titulo: 'CONJUNTO PANDEIRO', descricao: 'Par de banquetas em madeira torneada', foto: 'conjunto-pandeiro' },
+  { titulo: 'POLTRONA CURVA', descricao: 'Poltrona em madeira curvada e couro', foto: 'poltrona-curva' },
+  { titulo: 'BANQUETA ALTA', descricao: 'Banqueta em madeira com pés laqueados', foto: 'banqueta-alta' },
+];
+---
+
+<Layout title="Design | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/design" />
+    <ProjectGrid pasta="design" projetos={projetos} />
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+  }
+</style>

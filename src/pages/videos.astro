@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Social from '../components/Social.astro';
+
+const videos = [
+  {
+    titulo: 'Tour pelo Projeto no Brooklin',
+    descricao: 'Um apartamento de 222m² feito para receber convidados, explorando ambientes integrados e design sofisticado.',
+    videoId: '-m8nZOXOce0'
+  },
+  {
+    titulo: 'Apartamento de 139m² na Mooca',
+    descricao: 'Tour explorando as áreas íntimas com foco no conforto e acabamentos luxuosos.',
+    videoId: '2lyK9judOtk'
+  },
+  {
+    titulo: 'Estilo Rock & Luxury',
+    descricao: 'Conheça o living e a área social deste projeto moderno que mistura tons escuros e materiais nobres.',
+    videoId: 'fFJAcJGnhbo'
+  },
+  {
+    titulo: 'Área Íntima de Apartamento',
+    descricao: 'Dicas de marcenaria e aproveitamento de espaços em um projeto charmoso de 80m².',
+    videoId: 'D055Y9UDBU0'
+  }
+];
+---
+
+<Layout title="Vídeos | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/videos" />
+
+    <section class="page-header">
+      <h1>Vídeos</h1>
+      <p class="subtitle">Inspirações, tours por projetos e dicas de arquitetura e interiores</p>
+    </section>
+
+    <section class="videos-grid">
+      {videos.map((video) => (
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe 
+              src={`https://www.youtube.com/embed/${video.videoId}`} 
+              title={video.titulo}
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h2>{video.titulo}</h2>
+            <p>{video.descricao}</p>
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  .page-header {
+    margin: 24px 0 40px;
+  }
+
+  .page-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    color: #4f4a45;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    margin: 6px 0 0;
+    font-size: 15px;
+    color: #8a847d;
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .video-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e8e4de;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+
+  .video-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    background: #f3f0eb;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-info {
+    padding: 24px;
+  }
+
+  .video-info h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #4f4a45;
+    line-height: 1.3;
+  }
+
+  .video-info p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #7a756f;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+    
+    .videos-grid {
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .videos-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

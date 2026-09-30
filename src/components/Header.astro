@@ -1,0 +1,110 @@
+---
+interface Props {
+  active: string;
+}
+
+const { active } = Astro.props;
+
+const menu = [
+  { label: 'HOME', href: '/' },
+  { label: 'PROJ. RESIDENCIAIS', href: '/proj-residenciais' },
+  { label: 'PROJ. COMERCIAIS', href: '/proj-comerciais' },
+  { label: 'DESIGN', href: '/design' },
+  { label: 'CLIPPING', href: '/clipping' },
+  { label: 'MOSTRAS E CONCURSOS', href: '/mostras-e-concursos' },
+  { label: 'VÍDEOS', href: '/videos' },
+  { label: 'BLOG', href: '/blog' },
+  { label: 'SOBRE NÓS', href: '/sobre' },
+  { label: 'CONTATO', href: '/contato' },
+];
+---
+
+<header class="header">
+  <div class="contact">
+    <p class="phone">Tel/Whatsapp: (21) 98452-3178</p>
+    <p>Rio de Janeiro - RJ - Brasil</p>
+    <p>e-mail: <a href="mailto:contato@arquiteturaeinteriores.com">contato@arquiteturaeinteriores.com</a></p>
+  </div>
+  <a href="/" class="logo">
+    <img src="/logo.svg" alt="Arquitetura & Interiores - Carolina Mendes" />
+  </a>
+</header>
+
+<nav class="menu">
+  {menu.map((item) => (
+    <a href={item.href} class:list={{ active: item.href === active }}>{item.label}</a>
+  ))}
+</nav>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 200px;
+  }
+
+  .contact {
+    padding-top: 60px;
+    font-size: 17px;
+    line-height: 1.35;
+    color: #6f6a64;
+  }
+
+  .contact p {
+    margin: 0;
+  }
+
+  .contact .phone {
+    font-size: 19px;
+  }
+
+  .logo img {
+    display: block;
+    width: 230px;
+    height: auto;
+    margin-right: 40px;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+
+  .menu a {
+    padding: 8px 24px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #6f6a64;
+    letter-spacing: -0.2px;
+    transition: background 0.2s;
+  }
+
+  .menu a:hover,
+  .menu a.active {
+    background: #efebe4;
+  }
+
+  @media (max-width: 1000px) {
+    .header {
+      flex-direction: column-reverse;
+      gap: 20px;
+      min-height: 0;
+    }
+
+    .contact {
+      padding-top: 0;
+    }
+
+    .menu {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .menu a {
+      padding: 6px 12px;
+      font-size: 15px;
+    }
+  }
+</style>

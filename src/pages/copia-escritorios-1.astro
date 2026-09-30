@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Social from '../components/Social.astro';
+
+const fotos = [
+  { url: '/images/comerciais/abrasca-rj.jpg', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1503423571797-2d2bb372094a?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: '/images/comerciais/abrasca-sp.jpg', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1520694478166-daaaaec95b69?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ' },
+  { url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop', alt: 'ABRASCA-RJ - Banheiro' },
+  { url: 'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?q=80&w=800&auto=format&fit=crop', alt: 'P4240215' }
+];
+---
+
+<Layout title="Abrasca RJ | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/proj-comerciais" />
+
+    <div class="gallery-header">
+      <p class="intro">Clique na fotografia para v&ecirc;-la ampliada</p>
+      <h1 class="gallery-title">ABRASCA - RJ</h1>
+    </div>
+
+    <section class="gallery-grid">
+      {fotos.map((foto) => (
+        <a href={foto.url.replace('&w=800', '&w=1600')} target="_blank" class="gallery-item">
+          <div class="foto-wrapper">
+            <img 
+              src={foto.url} 
+              alt={foto.alt} 
+              loading="lazy" 
+            />
+          </div>
+        </a>
+      ))}
+    </section>
+
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  .gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 20px 0 24px;
+  }
+
+  .intro {
+    font-size: 14px;
+    color: #8c8c8c;
+    margin: 0;
+  }
+
+  .gallery-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: #5a5550;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 22px;
+    margin-bottom: 50px;
+  }
+
+  .gallery-item {
+    display: block;
+  }
+
+  .foto-wrapper {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #c8c8c8;
+  }
+
+  .foto-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover .foto-wrapper img {
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+    
+    .gallery-header {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 12px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

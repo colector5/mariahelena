@@ -1,0 +1,275 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Social from '../components/Social.astro';
+---
+
+<Layout title="Contato | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/contato" />
+
+    <section class="contato">
+      <h1>Contato</h1>
+      <p class="subtitle">Entre em contato conosco para agendar uma visita ou solicitar um orçamento</p>
+
+      <div class="content">
+        <div class="info">
+          <div class="info-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Telefone / WhatsApp</h3>
+              <p><a href="tel:+5521984523178">(21) 98452-3178</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div>
+              <h3>E-mail</h3>
+              <p><a href="mailto:contato@arquiteturaeinteriores.com">contato@arquiteturaeinteriores.com</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <h3>Localização</h3>
+              <p>Rio de Janeiro - RJ - Brasil</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div>
+              <h3>Horário de Atendimento</h3>
+              <p>Segunda a Sexta: 9h às 18h</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="form" onsubmit="event.preventDefault();">
+          <div class="form-row">
+            <div class="field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" />
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(21) 99999-9999" />
+          </div>
+
+          <div class="field">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" name="assunto">
+              <option value="">Selecione um assunto</option>
+              <option value="residencial">Projeto Residencial</option>
+              <option value="comercial">Projeto Comercial</option>
+              <option value="design">Design de Mobiliário</option>
+              <option value="consultoria">Consultoria</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Descreva seu projeto ou dúvida..."></textarea>
+          </div>
+
+          <button type="submit">Enviar Mensagem</button>
+        </form>
+      </div>
+    </section>
+
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  .contato h1 {
+    margin: 24px 0 4px;
+    font-size: 32px;
+    font-weight: 400;
+    color: #4f4a45;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    margin: 0 0 36px;
+    font-size: 15px;
+    color: #8a847d;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    margin-bottom: 50px;
+  }
+
+  /* Info cards */
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background: #f3f0eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .icon svg {
+    width: 22px;
+    height: 22px;
+    color: #9a8f82;
+  }
+
+  .info-item h3 {
+    margin: 0 0 2px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #4f4a45;
+  }
+
+  .info-item p {
+    margin: 0;
+    font-size: 15px;
+    color: #6f6a64;
+  }
+
+  .info-item a {
+    color: #6f6a64;
+    transition: color 0.2s;
+  }
+
+  .info-item a:hover {
+    color: #9a8f82;
+  }
+
+  /* Form */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .field label {
+    font-size: 13px;
+    font-weight: 400;
+    color: #6f6a64;
+    letter-spacing: 0.5px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    padding: 10px 14px;
+    border: 1px solid #ddd9d3;
+    background: #faf9f7;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 300;
+    color: #4f4a45;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: #9a8f82;
+  }
+
+  .field textarea {
+    resize: vertical;
+  }
+
+  button[type="submit"] {
+    align-self: flex-start;
+    padding: 12px 40px;
+    background: #4f4a45;
+    color: #fff;
+    border: none;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button[type="submit"]:hover {
+    background: #9a8f82;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+
+    .content {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

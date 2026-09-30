@@ -1,0 +1,96 @@
+---
+interface Projeto {
+  titulo: string;
+  descricao: string;
+  foto: string;
+}
+
+interface Props {
+  pasta: string;
+  projetos: Projeto[];
+}
+
+const { pasta, projetos } = Astro.props;
+---
+
+<p class="intro">Clique na fotografia para conhecer melhor o projeto</p>
+
+<section class="grid">
+  {projetos.map((p) => (
+    <a href="#" class="item">
+      <div class="foto">
+        <img src={`/images/${pasta}/${p.foto}.jpg`} alt={`${p.titulo} - ${p.descricao}`} loading="lazy" />
+      </div>
+      <h2 class="titulo">{p.titulo}</h2>
+      <p class="descricao">{p.descricao}</p>
+    </a>
+  ))}
+</section>
+
+<style>
+  .intro {
+    margin: 20px 0 16px;
+    font-size: 14px;
+    color: #6f6a64;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 22px;
+    margin-bottom: 40px;
+  }
+
+  .item {
+    display: block;
+  }
+
+  .foto {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #c8c8c8;
+  }
+
+  .foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .item:hover .foto img {
+    transform: scale(1.04);
+  }
+
+  .titulo {
+    margin: 12px 0 2px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #4f4a45;
+  }
+
+  .item:hover .titulo {
+    color: #9a8f82;
+  }
+
+  .descricao {
+    margin: 0;
+    font-size: 14px;
+    color: #8a847d;
+  }
+
+  @media (max-width: 1000px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 12px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

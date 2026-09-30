@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Social from '../components/Social.astro';
+---
+
+<Layout title="Sobre Nós | Arquitetura & Interiores">
+  <div class="page">
+    <Header active="/sobre" />
+
+    <section class="sobre">
+      <h1>Sobre Nós</h1>
+
+      <div class="content">
+        <div class="foto">
+          <img src="/images/autora.jpg" alt="Carolina Mendes - Arquiteta e Designer de Interiores" />
+        </div>
+
+        <div class="texto">
+          <h2>Carolina Mendes</h2>
+          <p class="cargo">Arquiteta e Designer de Interiores</p>
+
+          <p>
+            Com mais de 20 anos de experiência em arquitetura e design de interiores,
+            o escritório Arquitetura & Interiores se dedica a criar espaços que unem
+            funcionalidade, beleza e personalidade.
+          </p>
+
+          <p>
+            Atuando no Rio de Janeiro, nossos projetos abrangem residências,
+            espaços comerciais, design de mobiliário autoral e participação em
+            prestigiadas mostras de decoração como a Mostra Morar + por Menos
+            e a Rio + Design.
+          </p>
+
+          <p>
+            Acreditamos que cada projeto é único e merece atenção especial aos
+            detalhes, às necessidades do cliente e ao contexto em que se insere.
+            Nosso trabalho busca transformar ambientes em experiências que
+            refletem a identidade de quem os habita.
+          </p>
+
+          <div class="formacao">
+            <h3>Formação e Atuação</h3>
+            <ul>
+              <li>Graduação em Arquitetura e Urbanismo</li>
+              <li>Especialização em Design de Interiores</li>
+              <li>Projetos residenciais e comerciais no Rio de Janeiro</li>
+              <li>Design de mobiliário autoral</li>
+              <li>Participação em mostras e concursos de design</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Social />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  .sobre h1 {
+    margin: 24px 0 32px;
+    font-size: 32px;
+    font-weight: 400;
+    color: #4f4a45;
+    letter-spacing: 2px;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: minmax(280px, 350px) 1fr;
+    gap: 48px;
+    margin-bottom: 50px;
+    align-items: start;
+  }
+
+  .foto {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #f3f0eb;
+    max-width: 100%;
+  }
+
+  .foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .texto h2 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #4f4a45;
+  }
+
+  .cargo {
+    margin: 0 0 24px;
+    font-size: 15px;
+    color: #9a8f82;
+    letter-spacing: 0.5px;
+  }
+
+  .texto p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #6f6a64;
+    margin: 0 0 16px;
+  }
+
+  .formacao {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e8e4de;
+  }
+
+  .formacao h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #4f4a45;
+    letter-spacing: 1px;
+  }
+
+  .formacao ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style: none;
+  }
+
+  .formacao li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #6f6a64;
+  }
+
+  .formacao li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #c5bfb7;
+  }
+
+  @media (max-width: 1000px) {
+    .page {
+      padding: 30px 16px 60px;
+    }
+
+    .content {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .foto {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>
